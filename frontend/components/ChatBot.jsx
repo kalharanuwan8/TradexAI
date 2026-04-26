@@ -94,7 +94,7 @@ const ChatBot = () => {
                             <Bot size={18} className="text-blue-400" />
                         </div>
                         <div>
-                            <h3 className="text-sm font-semibold text-slate-100">ANTIGRAVITY AI</h3>
+                            <h3 className="text-sm font-semibold text-slate-100">TRADEX - AI</h3>
                             <div className="flex items-center gap-1.5">
                                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                                 <span className="text-[10px] text-slate-400 uppercase tracking-wider">Neural Link Active</span>

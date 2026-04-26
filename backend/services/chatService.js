@@ -82,7 +82,7 @@ class ChatService {
     if (!chat) {
       const context = await this.getMarketContext();
       const systemInstruction = `
-        You are the "ANTIGRAVITY INTELLIGENCE" Trading Assistant. 
+        You are the "TRADEX - AI" Trading Assistant. 
         Your goal is to provide institutional-grade insights on market flows, trade entries, and technical setups.
         
         USER DATA (CURRENT CONTEXT):
@@ -101,7 +101,7 @@ class ChatService {
       chat = this.model.startChat({
         history: [
           { role: "user", parts: [{ text: systemInstruction }] },
-          { role: "model", parts: [{ text: "Neural link established. ANTIGRAVITY Intelligence is online. How can I assist your market operations today?" }] }
+          { role: "model", parts: [{ text: "Neural link established. Tradex - AI is online. How can I assist your market operations today?" }] }
         ],
         generationConfig: {
           maxOutputTokens: 1000,
