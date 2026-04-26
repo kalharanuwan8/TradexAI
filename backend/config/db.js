@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const uri = (process.env.MONOG_URI || 'mongodb://localhost:27017/Crypto').trim();
+    const uri = (process.env.MONGO_URI || 'mongodb+srv://kalharanuwan:776624@tradex.3wo45sl.mongodb.net/?appName=tradex').trim();
     await mongoose.connect(uri);
     console.log('[Database] MongoDB connected successfully');
   } catch (err) {

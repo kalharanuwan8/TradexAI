@@ -15,8 +15,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'],
-    methods: ['GET', 'POST'],
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   }
 });
@@ -24,7 +24,7 @@ const io = new Server(server, {
 // Initialize Chat Service
 new ChatService(io);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 
 // Middleware
@@ -69,8 +69,10 @@ app.use((req, res) => {
   res.status(404).json({ success: false, error: `Route ${req.path} not found` });
 });
 
-server.listen(PORT, () => {
-  console.log(`\n🚀 Crypto Intelligence Backend running on http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n✅ [DEPLOYMENT] TRADEX-AI Backend is successfully running!`);
+  console.log(`🌐 Server Address: http://0.0.0.0:${PORT}`);
+  console.log(`🚀 Port: ${PORT}`);
   console.log(`📊 Socket.io: Connected and Listening`);
   console.log(`📊 Binance Public API: ${process.env.BINANCE_API_KEY ? '✅ Authenticated' : '✅ Public Mode'}`);
   console.log(`🤖 Gemini AI: ${process.env.GEMINI_API_KEY ? '✅ Connected' : '⚠️  Mock Mode (add GEMINI_API_KEY)'}`);

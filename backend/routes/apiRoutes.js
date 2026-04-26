@@ -56,6 +56,7 @@ router.get('/health', (req, res) => {
       hasGemini: !!process.env.GEMINI_API_KEY,
       hasNewsApi: !!process.env.NEWS_API_KEY,
       hasBinanceKey: !!process.env.BINANCE_API_KEY,
+      hasMongo: !!process.env.MONGO_URI,
     },
   });
 });
