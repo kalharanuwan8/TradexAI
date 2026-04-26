@@ -4,7 +4,7 @@ import { MessageSquare, Send, X, Minimize2, Maximize2, Bot, User, Loader2 } from
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const SOCKET_URL = 'http://localhost:3001';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);

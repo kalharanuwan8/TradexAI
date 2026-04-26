@@ -6,7 +6,7 @@ const { computeIndicators } = require('./indicatorService');
 class ChatService {
   constructor(io) {
     this.io = io;
-    this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    this.genAI = new GoogleGenerativeAI(process.env.CHAT_API_KEY);
     this.model = this.genAI.getGenerativeModel({ 
       model: "gemini-2.5-flash",
     });
