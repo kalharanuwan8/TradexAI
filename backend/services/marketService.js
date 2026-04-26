@@ -83,10 +83,12 @@ async function fetchMarketData(symbol = 'BTC/USDT', timeframe = '5m') {
     fetchCandles(symbol, timeframe, 200),
   ]);
 
+  const price = ticker.price || (candles.length > 0 ? candles[candles.length - 1].close : 0);
+  
   return {
     symbol,
     timeframe,
-    price: ticker.price,
+    price,
     ticker,
     candles,
     fetchedAt: new Date().toISOString(),
