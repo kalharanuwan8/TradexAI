@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://tradex-backend.niceriver-7d6bf361.southeastasia.azurecontainerapps.io/',
         changeOrigin: true,
       },
     },
