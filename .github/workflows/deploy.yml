@@ -1,0 +1,60 @@
+name: Tradex
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BACKEND_IMAGE: kalharanuwan/tradex-backend
+  FRONTEND_IMAGE: kalharanuwan/tradex-frontend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # -------- Docker Login --------
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # -------- Backend --------
+    - name: Build & Push Backend
+      run: |
+        docker build -t $BACKEND_IMAGE:latest ./backend
+        docker push $BACKEND_IMAGE:latest
+
+    # -------- Frontend --------
+    - name: Build & Push Frontend
+      run: |
+        docker build -t $FRONTEND_IMAGE:latest ./frontend
+        docker push $FRONTEND_IMAGE:latest
+
+    # -------- Azure Login --------
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # -------- Deploy Backend --------
+    - name: Deploy Backend
+      run: |
+        az containerapp update \
+          --name tradex-backend \
+          --resource-group kalhara \
+          --image $BACKEND_IMAGE:latest
+
+    # -------- Deploy Frontend --------
+    - name: Deploy Frontend
+      run: |
+        az containerapp update \
+          --name tradex-frontend \
+          --resource-group kalhara \
+          --image $FRONTEND_IMAGE:latest
