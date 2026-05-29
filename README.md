@@ -110,7 +110,7 @@ MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/tradexai
 JWT_SECRET=your_jwt_secret
 
 # AI / External APIs
-OPENAI_API_KEY=your_key        # or whichever AI provider you use
+GEMINI_API_KEY=your_key        # or whichever AI provider you use
 CRYPTO_API_KEY=your_key        # e.g. CoinGecko, Binance, etc.
 
 # [Add any other environment variables your app needs]
